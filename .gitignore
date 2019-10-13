@@ -354,3 +354,10 @@ healthchecksdb
 MigrationBackup/
 
 # End of https://www.gitignore.io/api/visualstudio
+*.props
+
+*.cache
+
+*.csproj
+
+*.dll
