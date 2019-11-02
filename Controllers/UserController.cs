@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AuslanAPI.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace AuslanAPI.Controllers
 {
@@ -11,6 +13,8 @@ namespace AuslanAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        UserService service = new UserService();
+
         // GET: api/User
         [HttpGet]
         public IEnumerable<string> Get()
@@ -19,10 +23,10 @@ namespace AuslanAPI.Controllers
         }
 
         // GET: api/User/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            return JsonConvert.SerializeObject(service.GetUsers(id));
         }
 
         // POST: api/User
