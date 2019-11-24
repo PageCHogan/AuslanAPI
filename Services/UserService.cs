@@ -12,7 +12,7 @@ namespace AuslanAPI.Services
         public List<UserDataModel> GetUsers(int? userID = null)
         {
             List<UserDataModel> userData = new List<UserDataModel>();
-            string SqlQuery = "SELECT ID, Status, Created, Username, Firstname, Lastname FROM Users";
+            string SqlQuery = "SELECT ID, Status, Created, Username, Firstname, Lastname, Password FROM Users";
 
             try
             {

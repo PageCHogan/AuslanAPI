@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AuslanAPI.Models;
+using AuslanAPI.Models.HttpResponses;
 using AuslanAPI.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +28,19 @@ namespace AuslanAPI.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return JsonConvert.SerializeObject(service.GetUsers(id));
+            HttpResponseData response = new HttpResponseData();
+
+            List<UserDataModel> users = service.GetUsers(id);
+
+            if(users.Count > 0)
+            {
+                response.Request = id;
+                response.Data = users[0];
+                response.Message = "Successfully did the thing.";
+            }
+
+            return JsonConvert.SerializeObject(response);
+            //return JsonConvert.SerializeObject(service.GetUsers(id));
         }
 
         // POST: api/User

@@ -12,7 +12,11 @@ namespace AuslanAPI.Services
 
         public DatabaseService()
         {
-            CONNECTION_STRING = ConfigurationManager.ConnectionStrings["auslanDB"].ConnectionString;
+            //TODO: Connection string not loading from config correctly
+            //CONNECTION_STRING = ConfigurationManager.ConnectionStrings["auslanDB"].ConnectionString;
+
+            CONNECTION_STRING = "Data Source=HOGAN-PC\\SQLEXPRESS;Initial Catalog=Auslan;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
             if (string.IsNullOrEmpty(CONNECTION_STRING))
             {
                 throw new Exception("Fatal error: missing connecting string in web.config file");
