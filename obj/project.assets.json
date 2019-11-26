@@ -8647,25 +8647,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Hogan\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\pageh\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub\\Auslan\\AuslanAPI\\AuslanAPI.csproj",
+      "projectUniqueName": "C:\\GitHub\\AuslanAPI\\AuslanAPI.csproj",
       "projectName": "AuslanAPI",
-      "projectPath": "D:\\GitHub\\Auslan\\AuslanAPI\\AuslanAPI.csproj",
-      "packagesPath": "C:\\Users\\Hogan\\.nuget\\packages\\",
-      "outputPath": "D:\\GitHub\\Auslan\\AuslanAPI\\obj\\",
+      "projectPath": "C:\\GitHub\\AuslanAPI\\AuslanAPI.csproj",
+      "packagesPath": "C:\\Users\\pageh\\.nuget\\packages\\",
+      "outputPath": "C:\\GitHub\\AuslanAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Hogan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\pageh\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
