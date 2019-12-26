@@ -12,7 +12,13 @@ namespace AuslanAPI.Services
         public List<UserDataModel> GetUsers(int? userID = null)
         {
             List<UserDataModel> userData = new List<UserDataModel>();
-            string SqlQuery = "SELECT ID, Status, Created, Username, Firstname, Lastname, Password FROM Users";
+            string SqlQuery = "SELECT ID, Status, Username, Firstname, Lastname, Password FROM Users";
+
+            // TODO: Test data while no database exists...
+            if(true)
+            {
+                return ServiceHelper.LoadJson<UserDataModel>("userData.json");
+            } 
 
             try
             {
@@ -45,11 +51,11 @@ namespace AuslanAPI.Services
                                 {
                                     ID = Convert.ToInt32(reader[0]),
                                     Status = (Enums.RecordStatus)Convert.ToInt32(reader[1]),
-                                    Created = Convert.ToDateTime(reader[2]),
-                                    Username = reader[3].ToString(),
-                                    Firstname = reader[4].ToString(),
-                                    Lastname = reader[5].ToString(),
-                                    Password = reader[6].ToString()
+                                    //Created = Convert.ToDateTime(reader[2]),
+                                    Username = reader[2].ToString(),
+                                    Firstname = reader[3].ToString(),
+                                    Lastname = reader[4].ToString(),
+                                    Password = reader[5].ToString()
                                 });
                             }
                         }
@@ -62,6 +68,66 @@ namespace AuslanAPI.Services
             }
 
             return userData;
+        }
+
+        public bool UpdateReport(UserDataModel userModel)
+        {
+            bool result = false;
+
+            if (userModel != null && userModel.ID > 0)
+            {
+                string SqlQuery = "UPDATE Users SET Status = @status,";
+
+                if (!string.IsNullOrEmpty(userModel.Lastname))
+                {
+                    SqlQuery += "Lastname = @lastname,";
+                }
+                if (!string.IsNullOrEmpty(userModel.Firstname))
+                {
+                    SqlQuery += "Firstname = @firstname,";
+                }
+                if (!string.IsNullOrEmpty(userModel.Password))
+                {
+                    SqlQuery += "Password = @password,";
+                }
+                if (SqlQuery.EndsWith(","))
+                {
+                    SqlQuery.Remove(SqlQuery.Length - 1);
+                }
+                
+                SqlQuery += "WHERE ID = @id";
+
+                try
+                {
+                    using (SqlConnection conn = new SqlConnection())
+                    {
+                        conn.ConnectionString = CONNECTION_STRING;
+                        conn.Open();
+
+                        SqlCommand command = new SqlCommand(SqlQuery, conn);
+
+                        if (SqlQuery.Length > 0)
+                        {
+                            command = new SqlCommand(SqlQuery, conn);
+                            command.Parameters.AddWithValue("@firstname", userModel.Firstname = userModel.Firstname ?? "");
+                            command.Parameters.AddWithValue("@lastname", userModel.Lastname = userModel.Lastname ?? "");
+                            command.Parameters.AddWithValue("@Password", userModel.Password);
+                        }
+                        int sqlResult = command.ExecuteNonQuery();
+
+                        result = sqlResult < 0 ? false : true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Exception Caught - " + ex.Message);
+                }
+            }
+
+            if (!result)
+                System.Diagnostics.Debug.WriteLine("Error - record not updated in database");
+
+            return result;
         }
 
         //    public bool AddNewReport(UserDataModel report)

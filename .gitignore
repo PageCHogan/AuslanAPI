@@ -361,3 +361,9 @@ MigrationBackup/
 *.csproj
 
 *.dll
+
+obj/Debug/netcoreapp3.0/AuslanAPI.csproj.FileListAbsolute.txt
+
+bin/Debug/netcoreapp3.0/AuslanAPI.runtimeconfig.dev.json
+
+*.ide
